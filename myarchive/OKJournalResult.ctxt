@@ -1,5 +1,7 @@
 #BlueJ class context
 comment0.params=journal
-comment0.target=OKJournalResult(Journal)
-comment1.target=Journal\ getJournal()
-numComments=2
+comment0.target=OKJournalResult(IJournal)
+comment1.target=IJournal\ getJournal()
+comment2.target=IItemId\ getItemId()
+comment3.target=IArchive\ getArchive()
+numComments=4

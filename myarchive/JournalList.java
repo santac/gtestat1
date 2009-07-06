@@ -5,37 +5,26 @@ import wsiarchive.*;
 // Kurzbeschreibung
 public class JournalList implements IJournalList {
 
-    private Journal first;
-    private IJournalList rest;
+    private IJournal first; // 1. Journal der Liste
+    private IJournalList rest; // Rest
     
-    JournalList (Journal first, IJournalList rest) {
+    JournalList (IJournal first, IJournalList rest) {
         this.first = first;
         this.rest = rest;
     }
     
+    public IJournal getFirst () { return this.first; }
+    public IJournalList getRest() { return this.rest; }
+    
     // Archiv des Items
     public IJournalResult getArchiveById (IItemId id) {
         if (this.first.getItemId() == id) {
-            return new OKJournalResult(this.first);
+            return new OKJournalResult(this.first); // OK mit gefundenem Journal zurückgeben
         } else {
             return this.rest.getArchiveById(id);
         }
     }
-    
-    // Item hinzufügen
-    public void add (IItemId id, IArchive archive) {
-        IJournalResult result = this.getArchiveById(id);
-        
-        IArchiveList archives = new PairArchiveList(archive, new EmptyArchiveList());
-        
-        if (result instanceof OKJournalResult) {
-            ((OKJournalResult) result).getJournal().add(archive);
-        } else if (this.rest instanceof EmptyJournal) {
-            this.rest = new JournalList(new Journal(id, archives), new EmptyJournal());
-            
-        } else if (this.rest instanceof JournalList) {
-            ((JournalList) this.rest).add(id, archive);
-        }
-    }
 
+    // Länge
+    public int length() { return 1+this.rest.length(); }
 }

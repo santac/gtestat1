@@ -1,3 +1,4 @@
 #BlueJ class context
 comment0.target=wsiarchive.IPutResultList\ toWSIPutResultList()
-numComments=1
+comment1.target=int\ countOKs()
+numComments=2

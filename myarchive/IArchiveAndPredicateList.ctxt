@@ -1,2 +1,6 @@
 #BlueJ class context
-numComments=0
+comment0.params=item\ semantic
+comment0.target=IPutResult\ put(Item,\ SemanticArchive)
+comment1.params=id
+comment1.target=IGetResult\ get(IItemId)
+numComments=2

@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.params=id
+comment0.target=RedJournal(IItemId)
+comment1.target=IItemId\ getItemId()
+comment2.target=IArchive\ getArchive()
+comment3.params=i\ list
+comment3.target=IArchive\ getArchiveHelper(int,\ IJournalList)
+comment4.params=id\ archive
+comment4.target=void\ addJournal(IItemId,\ IArchive)
+numComments=5

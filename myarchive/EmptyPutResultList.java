@@ -11,4 +11,7 @@ public class EmptyPutResultList implements IPutResultList {
     public wsiarchive.IPutResultList toWSIPutResultList() {
         return new wsiarchive.EmptyPutResultList();
     }
+    
+    // OKs zählen: 0
+    public int countOKs () { return 0; }
 }

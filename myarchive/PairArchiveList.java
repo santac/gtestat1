@@ -20,30 +20,48 @@ public class PairArchiveList implements IArchiveList {
     
     // Methode für Overflow: put
     // Effekt: Journal updaten
-    public IPutResult overflowPut (Item item, IArchive current) {
+    public IPutResult overflowPut (Item item, OverflowArchive current) {
         IPutResult put = this.first.put(item);
         
-        // Rekursion
-        if (put instanceof FullPutResult && this.rest instanceof PairArchiveList) {
-            return this.rest.overflowPut(item, current);
+        if (put instanceof OKPutResult) {
+        
+            // Journal updaten
+            current.addJournal( ((OKPutResult) put).getId(), this.first);
             
+            return put;
+            
+        // Rekursion
+        } else {
+            return this.rest.overflowPut(item, current);
+        }
+    }
+    
+    
+    // Methode für RedundantArchive: put
+    // Effekt: Journal updaten
+    public IPutResultList redundantPut (Item item, RedJournal journal) {
+        IPutResult put = this.first.put(item);
+        
         // Journal updaten
-        } else if (put instanceof OKPutResult) {
-            if (current instanceof OverflowArchive) {
-                ((OverflowArchive) current).addJournal(((OKPutResult) put).getId(), this.first);
-            }
+        if (put instanceof OKPutResult) {
+            journal.addJournal(((OKPutResult) put).getId(), this.first);
         }
         
-        return put;
+        return new PairPutResultList(put, this.rest.redundantPut(item, journal));
     }
     
     
-    // Archiv hinzufügen
-    public void add (IArchive archive) {
-        if (this.rest instanceof EmptyArchiveList) {
-            this.rest = new PairArchiveList(archive, this.rest);
+    
+    
+    // In allen Archiven get aufrufen
+    public IGetResult getAll (IItemId id) {
+        IGetResult get = this.first.get(id);
+        
+        if (get instanceof ItemResult) {
+            return get;
         } else {
-            ((PairArchiveList) this.rest).add(archive);
+            return this.rest.getAll(id);
         }
     }
+        
 }

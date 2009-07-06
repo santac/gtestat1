@@ -1,5 +1,9 @@
 #BlueJ class context
 comment0.target=EmptyArchiveList()
 comment1.params=item\ current
-comment1.target=IPutResult\ overflowPut(Item,\ IArchive)
-numComments=2
+comment1.target=IPutResult\ overflowPut(Item,\ OverflowArchive)
+comment2.params=id
+comment2.target=IGetResult\ getAll(IItemId)
+comment3.params=item\ redJ
+comment3.target=IPutResultList\ redundantPut(Item,\ RedJournal)
+numComments=4

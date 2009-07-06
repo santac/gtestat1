@@ -1,3 +1,7 @@
 #BlueJ class context
 comment0.target=EmptyArchiveAndPredicateList()
-numComments=1
+comment1.params=item\ semantic
+comment1.target=IPutResult\ put(Item,\ SemanticArchive)
+comment2.params=id
+comment2.target=IGetResult\ get(IItemId)
+numComments=3

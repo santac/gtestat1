@@ -10,6 +10,8 @@ public class OverflowArchive implements IArchive {
     private IArchiveList archives; // Archive
     private IJournalList journals = new EmptyJournal(); // Merke, wo welches Item gespeichert wurde
 
+    //private IPutResultList list; // Ergebnisse alle Schreibvorgänge bisher
+
     // Die Archive werden der Reihe nach gefüllt
     public OverflowArchive(String name, IArchiveList archives) {
         this.name = name;
@@ -20,6 +22,14 @@ public class OverflowArchive implements IArchive {
     public String getName() {
         return this.name;
     }
+    
+    // Archive ausgeben
+    public IArchiveList getArchives() {
+        return this.archives;
+    }
+    
+    public IJournalList getJournals () { return this.journals; }
+    
 
     // Item ins Archiv schreiben
     public IPutResult put(Item item) {
@@ -34,35 +44,27 @@ public class OverflowArchive implements IArchive {
     // Mehrere Items ins Archiv schreiben (myarchive)
     public IPutResultList putMultiple(IItemList items) {
         wsiarchive.IItemList wsiList = items.toWSIItemList();
-        return (this.putMultiple(wsiList)).toMyPutResultList();
+        
+        return (this.putMultiple(wsiList)).toMyPutResultList();        
     }
     
     // Item aus Archiv auslesen
-    public IGetResult get(IItemId id) {
+    public IGetResult get (IItemId id) {
         IJournalResult get = this.journals.getArchiveById(id);
         
         if (get instanceof OKJournalResult) {
-            IArchiveList archives = ((OKJournalResult) get).getJournal().getArchives();
+            IArchive archive = get.getArchive();
             
-            if (archives instanceof PairArchiveList) {
-                return ((PairArchiveList) archives).getFirst().get(id);
-            } else {
-                return new NoItemResult();
-            }
+            return archive.get(id);
             
         } else {
-            return new NoItemResult();
+            return this.archives.getAll(id);
         }
     }
-    
+        
     // Neues ItemID-Archiv-Paar zum Journal hinzufügen
     public void addJournal (IItemId id, IArchive archive) {
-        if (this.journals instanceof JournalList) {
-            ((JournalList) this.journals).add(id, archive);
-        } else {
-            Journal j = new Journal (id, new PairArchiveList(archive, new EmptyArchiveList()));
-            this.journals = new JournalList(j, new EmptyJournal());
-        }
+        
+        this.journals = new JournalList(new Journal(id, archive), this.getJournals());        
     }
-
 }

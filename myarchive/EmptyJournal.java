@@ -11,11 +11,13 @@ public class EmptyJournal implements IJournalList {
         return new NoJournalResult();
     }
     
-    // Item hinzufügen
-    public IJournalList add (IItemId id, IArchive archive) {
-        IArchiveList archives = new PairArchiveList(archive, new EmptyArchiveList());
-        
-        return new JournalList(new Journal(id, archives), this);
+    public IJournal getFirst () {
+        throw new AssertionError("Empty list: EmptyJournal.getFirst()");
     }
+    public IJournalList getRest () {
+        throw new AssertionError("Empty list: EmptyJournal.getRest()");
+    }
+    
+    public int length() { return 0; }
 
 }

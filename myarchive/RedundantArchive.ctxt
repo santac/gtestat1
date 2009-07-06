@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.params=name\ archives\ quorum
+comment0.target=RedundantArchive(String,\ IArchiveList,\ int)
+comment1.target=String\ getName()
+comment2.target=IArchiveList\ getArchives()
+comment3.target=int\ getQuorum()
+comment4.params=item
+comment4.target=IPutResult\ put(Item)
+comment5.params=items
+comment5.target=wsiarchive.IPutResultList\ putMultiple(wsiarchive.IItemList)
+comment6.params=id
+comment6.target=IGetResult\ get(IItemId)
+numComments=7

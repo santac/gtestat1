@@ -5,13 +5,21 @@ import wsiarchive.*;
 // Rückgabewert für Journalzugriffe
 public class OKJournalResult implements IJournalResult {
 
-    Journal journal; // Journal das gefunden wurde
+    private IJournal journal; // Journal das gefunden wurde
+    private IArchive archive; // Archiv des Journals
+    private IItemId id; // Id des Items
     
-    OKJournalResult (Journal journal) {
+    OKJournalResult (IJournal journal) {
         this.journal = journal;
+        this.archive = journal.getArchive();
+        this.id = journal.getItemId();
     }
     
     // Journal
-    public Journal getJournal() { return this.journal; }
+    public IJournal getJournal () { return this.journal; }
+    
+    public IItemId getItemId () { return this.id; }
+    
+    public IArchive getArchive () { return this.archive; }
 
 }

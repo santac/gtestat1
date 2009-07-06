@@ -1,8 +1,9 @@
 #BlueJ class context
 comment0.params=first\ rest
-comment0.target=JournalList(Journal,\ IJournalList)
-comment1.params=id
-comment1.target=IJournalResult\ getArchiveById(IItemId)
-comment2.params=id\ archive
-comment2.target=void\ add(IItemId,\ IArchive)
-numComments=3
+comment0.target=JournalList(IJournal,\ IJournalList)
+comment1.target=IJournal\ getFirst()
+comment2.target=IJournalList\ getRest()
+comment3.params=id
+comment3.target=IJournalResult\ getArchiveById(IItemId)
+comment4.target=int\ length()
+numComments=5

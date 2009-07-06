@@ -58,7 +58,5 @@ public class OverflowArchiveTest extends de.tuebingen.informatik.Test {
         
         // Listen hinzufügen TODO!
         puts = overflow.putMultiple(items1.toWSIItemList());
-        //checkExpect(puts, (new PairPutResultList(new OKPutResult(), new PairPutResultList(new OKPutResult(), new EmptyPutResultList()))).toWSIPutResultList());
-        //checkExpect(puts instanceof OKPutResult, true);
     }
 }

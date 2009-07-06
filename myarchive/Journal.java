@@ -3,32 +3,22 @@ package myarchive;
 import wsiarchive.*;
 
 // Journal für Dateidaten
-public class Journal {
+public class Journal implements IJournal {
 
     private IItemId id; // ID des Items
-    private IArchiveList archives; // Archiv auf dem Item gespeichert wurde
+    private IArchive archive; // Archiv auf dem Item gespeichert wurde
     
-    Journal (IItemId id, IArchiveList archives) {
+    Journal (IItemId id, IArchive archive) {
         this.id = id;
-        this.archives = archives;
+        this.archive = archive;
     }
     
     // Gets:
     public IItemId getItemId () {
         return this.id;
     }
-    public IArchiveList getArchives () {
-        return this.archives;
+    public IArchive getArchive () {
+        return this.archive;
     }
     
-    // Archiv zur Liste hinzufügen
-    public void add (IArchive archive) {
-        if (this.archives instanceof PairArchiveList) {
-            ((PairArchiveList) this.archives).add(archive);
-        } else {
-            this.archives = new PairArchiveList(archive, new EmptyArchiveList());
-        }
-    }
-    
-
 }

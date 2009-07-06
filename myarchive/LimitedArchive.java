@@ -6,7 +6,7 @@ import wsiarchive.*;
 // Kurzbeschreibung
 public class LimitedArchive implements IArchive {
 
-    private int size = 0; // Größe in MB
+    private int size; // Größe in MB
     private int used = 0; // Belegter Speicher in MB
     private IArchive archive; // Das eigentliche Archiv
     

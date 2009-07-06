@@ -27,5 +27,16 @@ public class PairPutResultList implements IPutResultList {
         return new wsiarchive.PairPutResultList(this.first,
                                                 this.rest.toWSIPutResultList());
     }
+    
+    
+    // OKs zählen
+    public int countOKs () {
+        int i = 0;
+        if (this.first instanceof OKPutResult) {
+            i = 1;
+        }
+        
+        return i + this.rest.countOKs();
+    }
 
 }
