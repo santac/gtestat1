@@ -24,6 +24,15 @@ public class JournalList implements IJournalList {
             return this.rest.getArchiveById(id);
         }
     }
+    
+    // Id eines Archives
+    public IJournalResult getIdByArchive (IArchive archive) {
+        if (this.first.getArchive() == archive) {
+            return new OKJournalResult(this.first);
+        } else {
+            return this.rest.getIdByArchive(archive);
+        }
+    }
 
     // Länge
     public int length() { return 1+this.rest.length(); }

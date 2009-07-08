@@ -11,14 +11,28 @@ public class EmptyArchiveAndPredicateList implements IArchiveAndPredicateList {
     public IPutResult put(Item item, SemanticArchive semantic) {
         IArchive standard = semantic.getStandard();
         IPutResult put = standard.put(item);
-        //Journal updaten:
-        semantic.addStandardJournal( ((OKPutResult) put).getId(), standard);
+
+        // Speicherung erfolgreich, ID und Archiv merken
+        if (put instanceof OKPutResult) {
+            semantic.addJournal( ((OKPutResult) put).getId(), standard);
+        }
         
-        return standard.put(item);
+        return put;
     }
     
     // Item aus Archiv auslesen
-    public IGetResult get(IItemId id) {
-        return new NoItemResult();
+    public IGetResult getAll (IItemId id, IArchive standard) {
+        return standard.get(id);
+    }
+    
+    // Prüfen, ob items aus reinpassen und diejenigen mit putMultiple setzen
+    public IPutResultListSorted semanticPutMultiple(IItemListSorted items, IPutResultListSorted finalResult, IArchive standard) {
+        //Ergebnis, welche in standard gesetzt wurden (OKPutResult oder FullPutResult)
+        IPutResultList result = standard.putMultiple(items.toItemList().toWSIItemList()).toMyPutResultList();
+        
+        //und: zuordnen der Nummern zum Ergebnis
+        IPutResultListSorted standardResult = result.toPutResultListSorted(items);
+        
+        return standardResult.addToFinalResult(finalResult);
     }
 }

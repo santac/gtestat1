@@ -54,7 +54,13 @@ public class RedundantArchive implements IArchive {
         
     // Mehrere Items ins Archiv schreiben
     public wsiarchive.IPutResultList putMultiple(wsiarchive.IItemList items) {
-        return items.putAll(this);
+        
+        IItemListSorted myItems = items.toMyItemList().toItemListSorted(1);
+        IRedundantPutResultListSorted redlist = this.archives.redundantPutMultiple(myItems);
+        
+        IPutResultList finalResult = redlist.toPutResultListByItems(myItems, this.quorum).toPutResultList();
+        
+        return finalResult.toWSIPutResultList();
     }
     
     // Item aus Archiv auslesen
@@ -64,7 +70,23 @@ public class RedundantArchive implements IArchive {
         if (get instanceof OKJournalResult)  {
             IArchive archive = ((OKJournalResult) get).getArchive();
             
-            return archive.get(id);
+            IJournalResult idResult = this.journals.getIdByArchive(archive);
+            
+            if (idResult instanceof OKJournalResult) {
+                IItemId idRed = ((OKJournalResult) idResult).getItemId();
+                IGetResult finalGet = archive.get(idRed);
+                
+                if (finalGet instanceof ItemResult) {
+                    Item item = ((ItemResult) finalGet).getItem();
+                    return new ItemIdResult(item, id);
+                    
+                } else {
+                    return new NoItemResult();
+                }
+                
+            } else {
+                throw new AssertionError("Keine ID gefunden.");
+            }
                         
         } else {
             return this.archives.getAll(id);

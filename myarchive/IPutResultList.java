@@ -10,5 +10,6 @@ public interface IPutResultList {
     // OKs in Liste zählen
     public int countOKs ();
     
-    // 
+    //nummerieren einer Ergebnisliste entsprechend einer IItemListSorted
+    public IPutResultListSorted toPutResultListSorted(IItemListSorted putList);
 }

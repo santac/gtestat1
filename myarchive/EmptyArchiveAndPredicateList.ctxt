@@ -2,6 +2,8 @@
 comment0.target=EmptyArchiveAndPredicateList()
 comment1.params=item\ semantic
 comment1.target=IPutResult\ put(Item,\ SemanticArchive)
-comment2.params=id
-comment2.target=IGetResult\ get(IItemId)
-numComments=3
+comment2.params=id\ standard
+comment2.target=IGetResult\ getAll(IItemId,\ IArchive)
+comment3.params=items\ finalResult\ standard
+comment3.target=IPutResultListSorted\ semanticPutMultiple(IItemListSorted,\ IPutResultListSorted,\ IArchive)
+numComments=4

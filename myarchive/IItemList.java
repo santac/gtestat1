@@ -9,5 +9,8 @@ public interface IItemList {
 
     // alle Items in das Archiv schreiben
     public IPutResultList putAll(IArchive archive);
+    
+    //in IItemListSorted umwandeln
+    public IItemListSorted toItemListSorted(int startnumber);
 
 }

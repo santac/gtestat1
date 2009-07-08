@@ -1,6 +1,8 @@
 #BlueJ class context
 comment0.params=item\ semantic
 comment0.target=IPutResult\ put(Item,\ SemanticArchive)
-comment1.params=id
-comment1.target=IGetResult\ get(IItemId)
-numComments=2
+comment1.params=id\ standard
+comment1.target=IGetResult\ getAll(IItemId,\ IArchive)
+comment2.params=items\ finalResult\ standard
+comment2.target=IPutResultListSorted\ semanticPutMultiple(IItemListSorted,\ IPutResultListSorted,\ IArchive)
+numComments=3

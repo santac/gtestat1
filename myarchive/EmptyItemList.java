@@ -16,4 +16,9 @@ public class EmptyItemList implements IItemList {
     public IPutResultList putAll(IArchive archive) {
         return new EmptyPutResultList();
     }
+    
+    //in IItemListSorted umwandeln
+    public IItemListSorted toItemListSorted(int startnumber) {
+        return new EmptyItemListSorted();
+    }
 }

@@ -12,6 +12,19 @@ public class EmptyArchiveList implements IArchiveList {
         return new FullPutResult();
     }
     
+    // Methode für Overflow: putMultiple
+    public IPutResultListSorted overflowPutMultiple (IItemListSorted items, IPutResultListSorted finalResult) {
+        IPutResultListSorted cannotPut = items.toFullPutResultListSorted();
+        
+        return cannotPut.addAlreadyPutToFinalResult(finalResult);
+    }
+    
+    // Methode für RedundantArchive: putMultiple
+    public IRedundantPutResultListSorted redundantPutMultiple(IItemListSorted items) {
+        return new EmptyRedundantPutResultListSorted();
+    }
+    
+
     public IGetResult getAll (IItemId id) {
         return new NoItemResult();
     }

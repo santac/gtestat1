@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.params=items\ quorum
+comment0.target=IPutResultListSorted\ toPutResultListByItems(IItemListSorted,\ int)
+comment1.params=n
+comment1.target=IPutResultListSorted\ getResultListSortedByNumber(int)
+numComments=2

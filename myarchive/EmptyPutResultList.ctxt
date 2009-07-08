@@ -2,4 +2,6 @@
 comment0.target=EmptyPutResultList()
 comment1.target=wsiarchive.IPutResultList\ toWSIPutResultList()
 comment2.target=int\ countOKs()
-numComments=3
+comment3.params=putList
+comment3.target=IPutResultListSorted\ toPutResultListSorted(IItemListSorted)
+numComments=4

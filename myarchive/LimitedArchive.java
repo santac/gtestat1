@@ -34,7 +34,7 @@ public class LimitedArchive implements IArchive {
     
     // Mehrere Items ins Archiv schreiben
     public wsiarchive.IPutResultList putMultiple(wsiarchive.IItemList items) {
-        return items.putAll(this);
+        return this.archive.putMultiple(items);
     }
     
     // Item aus Archiv auslesen

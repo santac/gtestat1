@@ -2,7 +2,9 @@
 comment0.target=EmptyJournal()
 comment1.params=id
 comment1.target=IJournalResult\ getArchiveById(IItemId)
-comment2.target=IJournal\ getFirst()
-comment3.target=IJournalList\ getRest()
-comment4.target=int\ length()
-numComments=5
+comment2.params=archive
+comment2.target=IJournalResult\ getIdByArchive(IArchive)
+comment3.target=IJournal\ getFirst()
+comment4.target=IJournalList\ getRest()
+comment5.target=int\ length()
+numComments=6

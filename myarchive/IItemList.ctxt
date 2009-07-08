@@ -2,4 +2,6 @@
 comment0.target=wsiarchive.IItemList\ toWSIItemList()
 comment1.params=archive
 comment1.target=IPutResultList\ putAll(IArchive)
-numComments=2
+comment2.params=startnumber
+comment2.target=IItemListSorted\ toItemListSorted(int)
+numComments=3

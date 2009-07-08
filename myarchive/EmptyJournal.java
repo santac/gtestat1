@@ -11,6 +11,10 @@ public class EmptyJournal implements IJournalList {
         return new NoJournalResult();
     }
     
+    public IJournalResult getIdByArchive (IArchive archive) {
+        return new NoJournalResult();
+    }
+    
     public IJournal getFirst () {
         throw new AssertionError("Empty list: EmptyJournal.getFirst()");
     }

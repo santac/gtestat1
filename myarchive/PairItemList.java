@@ -7,6 +7,7 @@ public class PairItemList implements IItemList {
     private Item first;
     private IItemList rest;
     
+    
     public PairItemList(Item first, IItemList rest) {
         this.first = first;
         this.rest = rest;
@@ -33,5 +34,9 @@ public class PairItemList implements IItemList {
         return new PairPutResultList(archive.put(this.first), 
                                      this.rest.putAll(archive));
     }
-
+    
+    //in IItemListSorted umwandeln
+    public IItemListSorted toItemListSorted(int startnumber) {
+        return new PairItemListSorted(this.first, startnumber, this.rest.toItemListSorted(startnumber + 1));
+    }
 }

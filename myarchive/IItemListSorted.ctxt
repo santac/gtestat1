@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.params=predicate
+comment0.target=IItemListSorted\ semanticCanPut(IItemPredicate)
+comment1.target=IPutResultListSorted\ toFullPutResultListSorted()
+comment2.params=itemNumber
+comment2.target=IItemListSorted\ delete(int)
+comment3.target=IItemList\ toItemList()
+numComments=4

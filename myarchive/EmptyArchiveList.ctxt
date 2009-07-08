@@ -2,8 +2,12 @@
 comment0.target=EmptyArchiveList()
 comment1.params=item\ current
 comment1.target=IPutResult\ overflowPut(Item,\ OverflowArchive)
-comment2.params=id
-comment2.target=IGetResult\ getAll(IItemId)
-comment3.params=item\ redJ
-comment3.target=IPutResultList\ redundantPut(Item,\ RedJournal)
-numComments=4
+comment2.params=items\ finalResult
+comment2.target=IPutResultListSorted\ overflowPutMultiple(IItemListSorted,\ IPutResultListSorted)
+comment3.params=items
+comment3.target=IRedundantPutResultListSorted\ redundantPutMultiple(IItemListSorted)
+comment4.params=id
+comment4.target=IGetResult\ getAll(IItemId)
+comment5.params=item\ redJ
+comment5.target=IPutResultList\ redundantPut(Item,\ RedJournal)
+numComments=6

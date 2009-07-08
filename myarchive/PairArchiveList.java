@@ -36,6 +36,24 @@ public class PairArchiveList implements IArchiveList {
         }
     }
     
+    // Methode für Overflow: putMultiple
+    public IPutResultListSorted overflowPutMultiple (IItemListSorted items, IPutResultListSorted finalResult) {
+        //welche Items können in diesem Teilarchiv gesetzt werden?
+        //IItemListSorted canPut = items.overflowCanPut(this);
+
+        //Ergebnis, welche von den canPuts gesetzt wurden (OKPutResult oder FullPutResult)
+        IPutResultList result = this.first.putMultiple(items.toItemList().toWSIItemList()).toMyPutResultList();
+        //und: entsprechen auch der Reihenfolge von canPut
+        IPutResultListSorted canResult = result.toPutResultListSorted(items);
+        
+        //ermitteln, welche Items mitgenommen werden müssen
+        IItemListSorted notYetPut = canResult.deleteAlreadyPutFromItems(items);
+        //da sie nicht gesetzt werden konnten/durften
+        
+        //Ergebnisse zu Ergebnisliste (Endergebnis) hinzufügen und ins nächste Archiv mitnehmen
+        return this.rest.overflowPutMultiple(notYetPut, canResult.addAlreadyPutToFinalResult(finalResult));
+    }
+    
     
     // Methode für RedundantArchive: put
     // Effekt: Journal updaten
@@ -48,6 +66,17 @@ public class PairArchiveList implements IArchiveList {
         }
         
         return new PairPutResultList(put, this.rest.redundantPut(item, journal));
+    }
+    
+    // Methode für RedundantArchive: putMultiple
+    public IRedundantPutResultListSorted redundantPutMultiple(IItemListSorted items) {
+
+        //Ergebnis, welche von den canPuts gesetzt wurden (OKPutResult oder FullPutResult)
+        IPutResultList result = this.first.putMultiple(items.toItemList().toWSIItemList()).toMyPutResultList();
+        // Umwandeln in sortierte Liste
+        IPutResultListSorted sortedList = result.toPutResultListSorted(items);
+        
+        return new PairRedundantPutResultListSorted(sortedList, this.rest.redundantPutMultiple(items));
     }
     
     

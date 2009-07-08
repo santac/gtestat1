@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.params=items
+comment0.target=IItemListSorted\ deleteAlreadyPutFromItems(IItemListSorted)
+comment1.params=finalResult
+comment1.target=IPutResultListSorted\ addAlreadyPutToFinalResult(IPutResultListSorted)
+comment2.params=finalResult
+comment2.target=IPutResultListSorted\ addToFinalResult(IPutResultListSorted)
+comment3.params=result\ number
+comment3.target=IPutResultListSorted\ addSorted(IPutResult,\ int)
+comment4.target=IPutResultList\ toPutResultList()
+comment5.params=n
+comment5.target=IPutResult\ getResultByNumber(int)
+numComments=6

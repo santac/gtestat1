@@ -23,14 +23,18 @@ public class OverflowArchiveTest extends de.tuebingen.informatik.Test {
     IArchive overflow = new OverflowArchive("SDA", sda);
     
     // Ein paar schöne Items
-    // Gesamtgröße: 6182
+    // Gesamtgröße: 6195
     Item mp3s = new Item("MP3s", 1800);
+    Item dokumente = new Item("Dokumente", 13);
     Item bilder = new Item("Bilder", 62);
     Item videos = new Item("Videos", 4320);
+    Item filme = new Item("Filme", 700);
     
     // Als Liste:
     IItemList items1 = new PairItemList(mp3s, new PairItemList(bilder, new EmptyItemList()));
     IItemList items2 = new PairItemList(mp3s, new PairItemList(bilder, new PairItemList(videos, new EmptyItemList())));
+    IItemList items3 = new PairItemList(bilder, new PairItemList(filme, new PairItemList(dokumente, new EmptyItemList())));
+    
     
     @Test
     public void overflow () {
@@ -44,18 +48,34 @@ public class OverflowArchiveTest extends de.tuebingen.informatik.Test {
         // Für die Videos sollten *alle* Platten zu klein sein:
         put = overflow.put(videos);
         checkExpect(put instanceof FullPutResult, true);
+        checkExpect(put instanceof OKPutResult, false);
         
         // Der Rest sollte klappen
         put = overflow.put(mp3s);
         checkExpect(put instanceof OKPutResult, true);
+        checkExpect(put instanceof FullPutResult, false);
+        get = overflow.get(((OKPutResult) put).getId());
+        checkExpect(get instanceof ItemResult, true);
+        
+        put = overflow.put(dokumente);
+        checkExpect(put instanceof OKPutResult, true);
+        checkExpect(put instanceof FullPutResult, false);
         get = overflow.get(((OKPutResult) put).getId());
         checkExpect(get instanceof ItemResult, true);
         
         put = overflow.put(bilder);
         checkExpect(put instanceof OKPutResult, true);
+        checkExpect(put instanceof FullPutResult, false);
         get = overflow.get(((OKPutResult) put).getId());
         checkExpect(get instanceof ItemResult, true);
         
+        put = overflow.put(filme);
+        checkExpect(put instanceof OKPutResult, true);
+        checkExpect(put instanceof FullPutResult, false);
+        get = overflow.get(((OKPutResult) put).getId());
+        checkExpect(get instanceof ItemResult, true);
+        
+
         // Listen hinzufügen TODO!
         puts = overflow.putMultiple(items1.toWSIItemList());
     }

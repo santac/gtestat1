@@ -39,4 +39,10 @@ public class PairPutResultList implements IPutResultList {
         return i + this.rest.countOKs();
     }
 
+    //nummerieren einer Ergebnisliste entsprechend einer IItemListSorted
+    public IPutResultListSorted toPutResultListSorted(IItemListSorted putList) {
+        return new PairPutResultListSorted(this.first, ((PairItemListSorted)putList).getNumber(), this.rest.toPutResultListSorted(((PairItemListSorted)putList).getRest()));
+    }
+    
+
 }

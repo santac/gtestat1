@@ -14,4 +14,10 @@ public class EmptyPutResultList implements IPutResultList {
     
     // OKs zählen: 0
     public int countOKs () { return 0; }
+    
+        //nummerieren einer Ergebnisliste entsprechend einer IItemListSorted
+    public IPutResultListSorted toPutResultListSorted(IItemListSorted putList) {
+            return new EmptyPutResultListSorted();
+        }
+
 }

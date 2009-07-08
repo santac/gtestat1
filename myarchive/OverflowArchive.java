@@ -38,14 +38,12 @@ public class OverflowArchive implements IArchive {
     
     // Mehrere Items ins Archiv schreiben (wsiarchive)
     public wsiarchive.IPutResultList putMultiple(wsiarchive.IItemList items) {
-        return items.putAll(this);
+        return this.putMultiple(items.toMyItemList()).toWSIPutResultList();
     }
     
     // Mehrere Items ins Archiv schreiben (myarchive)
     public IPutResultList putMultiple(IItemList items) {
-        wsiarchive.IItemList wsiList = items.toWSIItemList();
-        
-        return (this.putMultiple(wsiList)).toMyPutResultList();        
+        return this.archives.overflowPutMultiple(items.toItemListSorted(1), new EmptyPutResultListSorted()).toPutResultList();
     }
     
     // Item aus Archiv auslesen
